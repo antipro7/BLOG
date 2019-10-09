@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <section class="title">
+    <section
+      class="title"
+      :class="[ifAbbreviation ? 'abbr' : '']"
+      @click="toggleLeft">
       <router-link
         to='/'
         class="r title-css">CSS</router-link>
@@ -14,7 +17,17 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+      ifAbbreviation: false
+    }
+  },
+  methods: {
+    toggleLeft () {
+      this.ifAbbreviation = !this.ifAbbreviation
+    }
+  }
 }
 </script>
 
@@ -26,23 +39,24 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #fff;
+  user-select: none;
   .title {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 30%;
+    width: 20%;
     height: 100%;
+    padding: 20px;
     background-color: #1e1f26;
+    font-size: 60px;
+    transition: all .2s ease-in-out;
     .r {
       line-height: 250px;
-      margin: 10px 20px;
       text-align: center;
       color: #fff;
-      font-size: 60px;
       letter-spacing: 6px;
       border-radius: 10px;
       cursor: pointer;
-      user-select: none;
       text-decoration: none;
     }
     .title-css {
@@ -56,7 +70,15 @@ export default {
   }
   .content {
     flex: 1;
-    margin: 50px;
+    height: 100%;
+    padding: 50px;
+    overflow: auto;
+  }
+
+  .abbr {
+    width: 2%;
+    padding: 0;
+    font-size: 0;
   }
 }
 </style>

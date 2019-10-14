@@ -10,6 +10,9 @@
       <router-link
         to='/js'
         class="r title-js">JS</router-link>
+      <router-link
+        to='/vue'
+        class="r title-vue">VUE</router-link>
     </section>
     <router-view class="content"/>
   </div>

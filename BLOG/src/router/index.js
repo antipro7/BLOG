@@ -1,9 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import CSS from '@/components/css'
-import JS from '@/components/js'
-import getBoundingClientRect from '@/pages/getBoundingClientRect'
-import debounceThrottle from '@/pages/debounceThrottle'
 
 Vue.use(Router)
 
@@ -12,22 +8,27 @@ export default new Router({
     {
       path: '/',
       name: 'CSS',
-      component: CSS
+      component: () => import('@/components/css')
     },
     {
       path: '/js',
       name: 'JS',
-      component: JS
+      component: () => import('@/components/js')
+    },
+    {
+      path: '/vue',
+      name: 'VUE',
+      component: () => import('@/components/vue')
     },
     {
       path: '/getBoundingClientRect',
       name: 'getBoundingClientRect',
-      component: getBoundingClientRect
+      component: () => import('@/pages/getBoundingClientRect')
     },
     {
       path: '/debounceThrottle',
       name: 'debounceThrottle',
-      component: debounceThrottle
+      component: () => import('@/pages/debounceThrottle')
     }
   ]
 })

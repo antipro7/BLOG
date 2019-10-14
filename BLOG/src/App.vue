@@ -49,13 +49,15 @@ export default {
     justify-content: space-around;
     width: 20%;
     height: 100%;
-    padding: 20px;
     background-color: #1e1f26;
     font-size: 60px;
     transition: all .2s ease-in-out;
     .r {
-      line-height: 250px;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1 0;
+      margin: 20px;
       color: #fff;
       letter-spacing: 6px;
       border-radius: 10px;
@@ -69,6 +71,10 @@ export default {
     .title-js {
       background: linear-gradient(135deg, #fe6200, #ff4a3c, #ff0b59);
       box-shadow: 0 6px 20px -6px rgba(255, 75, 56, .8);
+    }
+    .title-vue {
+      background: linear-gradient(135deg, #41b883, #35495e);
+      box-shadow: 0 6px 20px -6px rgba(35, 145, 112, 0.8);
     }
   }
   .content {

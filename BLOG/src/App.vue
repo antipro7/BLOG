@@ -49,6 +49,7 @@ export default {
     justify-content: space-around;
     width: 20%;
     height: 100%;
+    padding: 20px;
     background-color: #1e1f26;
     font-size: 60px;
     transition: all .2s ease-in-out;
@@ -57,12 +58,15 @@ export default {
       justify-content: center;
       align-items: center;
       flex: 1 0;
-      margin: 20px;
+      margin-bottom: 20px;
       color: #fff;
       letter-spacing: 6px;
       border-radius: 10px;
       cursor: pointer;
       text-decoration: none;
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
     .title-css {
       background: linear-gradient(135deg, #2875d7, #39b1e4);

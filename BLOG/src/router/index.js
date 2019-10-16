@@ -29,6 +29,11 @@ export default new Router({
       path: '/debounceThrottle',
       name: 'debounceThrottle',
       component: () => import('@/pages/debounceThrottle')
+    },
+    {
+      path: '/vuexShoppingCart',
+      name: 'vuexShoppingCart',
+      component: () => import('@/pages/vuex-shoppingCart/index')
     }
   ]
 })

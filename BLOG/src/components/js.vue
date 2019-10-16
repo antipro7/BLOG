@@ -3,8 +3,8 @@
     <section>
       <h2>API</h2>
       <ol>
-        <li @click="goContent('getBoundingClientRect')">getBoundingClientRect</li>
-        <li @click="goContent('debounceThrottle')">防抖与节流</li>
+        <li @click="$go('getBoundingClientRect')">getBoundingClientRect</li>
+        <li @click="$go('debounceThrottle')">防抖与节流</li>
       </ol>
     </section>
   </div>
@@ -14,9 +14,6 @@
 export default {
   name: 'JS',
   methods: {
-    goContent (url) {
-      this.$router.push(url)
-    }
   }
 }
 </script>

@@ -87,6 +87,9 @@ export default {
     this.$refs['s-outer'].addEventListener('scroll', this.handleScroll)
     this.$refs['ceiling'].addEventListener('scroll', this.ceilingScroll)
   },
+  destroyed () {
+    window.removeEventListener('resize', this.handleResize)
+  },
   methods: {
     handleResize () {
       let t = this.$refs['drag-div'].getBoundingClientRect()

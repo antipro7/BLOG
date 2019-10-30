@@ -51,7 +51,7 @@ export default {
     height: 100%;
     padding: 20px;
     background-color: #1e1f26;
-    font-size: 60px;
+    font-size: 5vw;
     transition: all .2s ease-in-out;
     .r {
       display: flex;

@@ -5,6 +5,7 @@
       <ol>
         <li @click="$go('getBoundingClientRect')">getBoundingClientRect</li>
         <li @click="$go('debounceThrottle')">防抖与节流</li>
+        <li @click="$go('functionPro')">函数式编程</li>
       </ol>
     </section>
   </div>

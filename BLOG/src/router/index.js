@@ -34,6 +34,16 @@ export default new Router({
       path: '/vuexShoppingCart',
       name: 'vuexShoppingCart',
       component: () => import('@/pages/vuex-shoppingCart/index')
+    },
+    {
+      path: '/functionPro',
+      name: 'functionPro',
+      component: () => import('@/pages/functionPro')
+    },
+    {
+      path: '/css/loading',
+      name: 'loading',
+      component: () => import('@/pages/CSS/loading')
     }
   ]
 })

@@ -21,29 +21,34 @@ export default new Router({
       component: () => import('@/components/vue')
     },
     {
-      path: '/getBoundingClientRect',
+      path: '/js/getBoundingClientRect',
       name: 'getBoundingClientRect',
-      component: () => import('@/pages/getBoundingClientRect')
+      component: () => import('@/pages/JS/getBoundingClientRect')
     },
     {
-      path: '/debounceThrottle',
+      path: '/js/debounceThrottle',
       name: 'debounceThrottle',
-      component: () => import('@/pages/debounceThrottle')
+      component: () => import('@/pages/JS/debounceThrottle')
     },
     {
       path: '/vuexShoppingCart',
       name: 'vuexShoppingCart',
-      component: () => import('@/pages/vuex-shoppingCart/index')
+      component: () => import('@/pages/VUE/vuex-shoppingCart/index')
     },
     {
-      path: '/functionPro',
+      path: '/js/functionPro',
       name: 'functionPro',
-      component: () => import('@/pages/functionPro')
+      component: () => import('@/pages/JS/functionPro')
     },
     {
       path: '/css/loading',
       name: 'loading',
       component: () => import('@/pages/CSS/loading')
+    },
+    {
+      path: '/js/virtualList',
+      name: 'virtualList',
+      component: () => import('@/pages/JS/virtual-list/index')
     }
   ]
 })

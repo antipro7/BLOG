@@ -1,4 +1,4 @@
-import shop from '@/pages/vuex-shoppingCart/api/shop'
+import shop from '@/pages/VUE/vuex-shoppingCart/api/shop'
 
 const state = {
   items: [],

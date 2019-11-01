@@ -15,33 +15,45 @@
       <p>总运行时间：{{ frag.date2 }}</p>
       <ol ref="frag"></ol>
     </div>
-    <V
+    <VirtualList
       :listData="listData"
-      :itemSize="100"
-      />
+      :estimatedItemSize="300"
+      v-slot="slotProps"
+      >
+      <Item :item="slotProps.item"></Item>
+    </VirtualList>
   </div>
 </template>
 
 <script>
-import V from './components/virtualList'
+import VirtualList from './components/VirtualList'
+import Item from './components/Item'
+
+import faker from 'faker'
 
 let d = []
 for (let i = 0; i < 1000; i++) {
-  d.push({ id: i, value: i })
+  d.push({
+    id: i,
+    value: faker.lorem.sentences()
+  })
 }
 
 export default {
   name: 'virtualList',
   data () {
     return {
+      // 虚拟列表数据
       listData: d,
+      // 普通列表数据
       total: 10000,
       origin: { date1: 0, date2: 0 },
       frag: { date1: 0, date2: 0 }
     }
   },
   components: {
-    V
+    VirtualList,
+    Item
   },
   methods: {
     addData () {
@@ -83,14 +95,13 @@ export default {
   justify-content: space-around;
   flex-wrap: wrap;
   .box {
-    width: 48%;
     ol {
       max-height: 300px;
-      padding-left: 20%;
+      padding-left: 30%;
       overflow: auto;
     }
   }
-  .list-container {
+  .infinite-list-container {
     width: 300px;
     background-color: #eee;
   }

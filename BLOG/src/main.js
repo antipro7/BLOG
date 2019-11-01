@@ -5,7 +5,7 @@ import App from './App'
 import store from './store'
 import router from './router'
 import utils from './utils/index'
-import { currency } from './utils/currency'
+import { currency } from './utils/util'
 
 Vue.config.productionTip = false
 Vue.use(utils)

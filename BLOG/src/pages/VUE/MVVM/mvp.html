@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MVP模式</title>
+  <style>
+  .grid {
+    display: grid;
+    width: 60%;
+    height: 80%;
+    margin: 100px auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+  }
+  .item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 100px;
+    grid-template-areas: "num num"
+                        "decrease increase";
+    background-color: aliceblue;
+  }
+  .num {
+    grid-area: num;
+    justify-self: center;
+    align-self: center;
+    color: black;
+    font-weight: bold;
+  }
+  .decrease {
+    grid-area: decrease
+  }
+  .increase {
+    grid-area: increase
+  }
+  </style>
+</head>
+<body>
+  <div class="grid">
+    <div class="item">
+      <span class="num"></span>
+      <button class="decrease">-</button>
+      <button class="increase">+</button>
+    </div>
+  </div>
+
+  <script>
+    let myapp = {}
+
+    // Model层
+    myapp.Model = function () {
+      let val = 0
+
+      this.add = function (v) {
+        if (val < 100) val += v
+      }
+      this.sub = function (v) {
+        if (val > 0) val -= v
+      }
+      this.getVal = function () {
+        return val
+      }
+    }
+
+    // View层
+    myapp.View = function () {
+      let num = document.getElementsByClassName('num')[0]
+      let decrease = document.getElementsByClassName('decrease')[0]
+      let increase = document.getElementsByClassName('increase')[0]
+
+      this.render = function (model) {
+        num.innerHTML = model.getVal() + 'rmb'
+      }
+
+      this.init = function () {
+        let presenter = new myapp.Persenter(this)
+
+        decrease.addEventListener('click', presenter.decrease)
+        increase.addEventListener('click', presenter.increase)
+      }
+    }
+
+    myapp.Persenter = function (view) {
+      let _model = new myapp.Model()
+      let _view = view
+
+      _view.render(_model)
+
+      this.decrease = function () {
+        _model.sub(1)
+        _view.render(_model)
+      }
+      this.increase = function () {
+        _model.add(1)
+        _view.render(_model)
+      }
+    }
+
+    ;(function () {
+      let view = new myapp.View()
+      view.init()
+    })()
+  </script>
+</body>
+</html>

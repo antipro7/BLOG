@@ -31,7 +31,7 @@ export default new Router({
       component: () => import('@/pages/JS/debounceThrottle')
     },
     {
-      path: '/vuexShoppingCart',
+      path: '/vue/vuexShoppingCart',
       name: 'vuexShoppingCart',
       component: () => import('@/pages/VUE/vuex-shoppingCart/index')
     },
@@ -49,6 +49,11 @@ export default new Router({
       path: '/js/virtualList',
       name: 'virtualList',
       component: () => import('@/pages/JS/virtual-list/index')
+    },
+    {
+      path: '/vue/mvvm',
+      name: 'mvvm',
+      component: () => import('@/pages/VUE/MVVM/index')
     }
   ]
 })

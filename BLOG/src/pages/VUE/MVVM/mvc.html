@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MVC模式</title>
+  <style>
+  .grid {
+    display: grid;
+    width: 60%;
+    height: 80%;
+    margin: 100px auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+  }
+  .item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 100px;
+    grid-template-areas: "num num"
+                        "decrease increase";
+    background-color: aliceblue;
+  }
+  .num {
+    grid-area: num;
+    justify-self: center;
+    align-self: center;
+    color: black;
+    font-weight: bold;
+  }
+  .decrease {
+    grid-area: decrease
+  }
+  .increase {
+    grid-area: increase
+  }
+  </style>
+</head>
+<body>
+  <div class="grid">
+    <div class="item">
+      <span class="num mvc-n"></span>
+      <button class="decrease mvc-d">-</button>
+      <button class="increase mvc-i">+</button>
+    </div>
+  </div>
+
+  <script>
+  let myapp = {} // 创建这个应用对象
+
+  myapp.Model = function () {
+    let val = 0 // 需要操作的数据
+
+    // 操作数据的方法
+    this.add = function (v) {
+      if (val < 100) val += v
+    }
+    this.sub = function (v) {
+      if (val > 0) val -= v
+    }
+    this.getVal = function () {
+      return val
+    }
+
+    /* 观察者模式 */
+    // View事先在Model上注册，进而观察Model.以便更新model上改变的数据
+    let self = this
+    let views = []
+
+    this.register = function (view) {
+      views.push(view)
+    }
+    this.notify = function () {
+      for (let i = 0; i < views.length; i++) {
+        views[i].render(self)
+      }
+    }
+  }
+
+  myapp.View = function (controller) {
+    // 视图元素
+    let num = document.getElementsByClassName('mvc-n')[0]
+    let decBtn = document.getElementsByClassName('mvc-d')[0]
+    let incBtn = document.getElementsByClassName('mvc-i')[0]
+
+    // 渲染数据
+    this.render = function (model) {
+      num.innerHTML = model.getVal() + 'rmb'
+    }
+
+    // 绑定事件
+    decBtn.addEventListener('click', controller.decrease)
+    incBtn.addEventListener('click', controller.increase)
+  }
+
+  myapp.Controller = function () {
+    let model = null
+    let view = null
+
+    this.init = function () {
+      // 初始化Model和View
+      model = new myapp.Model()
+      view = new myapp.View(this)
+
+      // View向Model注册，当Model更新就会去通知View
+      model.register(view)
+      model.notify()
+    }
+
+    // Model更新数值并通知View更新视图
+    this.increase = function () {
+      model.add(1)
+      model.notify()
+    }
+    this.decrease = function () {
+      model.sub(1)
+      model.notify()
+    }
+  }
+
+  ;(function() {
+    let controller = new myapp.Controller()
+    controller.init()
+  })();
+  </script>
+</body>
+</html>

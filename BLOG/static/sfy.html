@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>双飞翼布局</title>
+  <style>
+  html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  header, footer {
+    height: 50px;
+    background-color: darkgrey;
+  }
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  .block {
+    float: left;
+  }
+  .container {
+    width: 100%;
+  }
+  .center {
+    margin: 0 250px 0 200px;
+    background-color: lightskyblue;
+  }
+  .left {
+    width: 200px;
+    margin-left: -100%;
+    background-color: mediumturquoise;
+  }
+  .right {
+    width: 250px;
+    margin-left: -250px;
+    background-color: red;
+  }
+  </style>
+</head>
+<body>
+  <header></header>
+  <div class="container block">
+    <div class="center">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptatibus recusandae numquam temporibus quos illo consequatur impedit ex perspiciatis, laboriosam voluptatum nesciunt ut ratione, sunt similique minima corporis perferendis ab?
+      Voluptatibus est nostrum animi facilis veritatis quaerat ipsa sed qui velit esse ut, quos nam hic delectus, corporis voluptates nesciunt. Commodi dolores mollitia ea explicabo possimus. Alias, quidem nemo! Voluptatibus!
+      Id hic explicabo, sint architecto illum qui error quia soluta blanditiis? Reiciendis, laudantium rem repudiandae corrupti nam fugiat minus inventore quis velit eos ipsum id numquam qui aliquid molestias sit!
+    </div>
+  </div>
+  <div class="left block">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor fugiat beatae asperiores rerum, quod mollitia quas ipsam dolorum quo, magni commodi inventore earum voluptatibus facilis dolores tenetur maxime! Voluptatibus, perspiciatis.
+  </div>
+  <div class="right block">
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa, molestiae illo! Fugiat, eligendi. Deleniti totam incidunt necessitatibus, vitae placeat earum, accusantium autem a quas maxime aliquid alias animi facere ipsam.
+  </div>
+  <footer></footer>
+</body>
+</html>

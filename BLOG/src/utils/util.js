@@ -30,7 +30,8 @@ function binarySearch (list, value, factor) {
 
   while (start <= end) {
     let midIndex = parseInt((start + end) / 2)
-    let midValue = factor ? list[midIndex].factor : list[midIndex]
+    // let midValue = list[midIndex].bottom
+    let midValue = factor ? list[midIndex][factor] : list[midIndex]
 
     if (midValue === value) {
       return midIndex + 1

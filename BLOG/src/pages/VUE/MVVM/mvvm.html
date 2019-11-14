@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MVVM数据劫持</title>
+  <style>
+    .grid {
+      display: grid;
+      width: 60%;
+      height: 80%;
+      margin: 100px auto;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 10px;
+    }
+    .item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 100px 100px;
+      grid-template-areas: "num num"
+                          "decrease increase";
+      background-color: aliceblue;
+    }
+    .num {
+      grid-area: num;
+      justify-self: center;
+      align-self: center;
+      color: black;
+      font-weight: bold;
+    }
+    .decrease {
+      grid-area: decrease
+    }
+    .increase {
+      grid-area: increase
+    }
+  </style>
+</head>
+<body>
+  <div class="grid">
+    <div class="item">
+      <span class="num"></span>
+      <button class="decrease">-</button>
+      <button class="increase">+</button>
+    </div>
+  </div>
+
+  <script>
+    // model
+    let num = { value: 0 }
+
+    // 数据劫持
+    function observe(data) {
+      if (!data || typeof data !== 'object') {
+        return
+      }
+
+      // 递归劫持对象属性
+      Object.keys(data).forEach(function (key) {
+        defineReactive(data, key, data[key])
+      })
+    }
+
+    function defineReactive(obj, key, value) {
+      // 监听子属性
+      observe(value)
+
+      Object.defineProperty(obj, key, {
+        get: function reactiveSetter () {
+          return value
+        },
+        set: function reactiveSetter(newVal) {
+          if (value === newVal) {
+            return
+          } else {
+            console.log(`监听成功：${value} --> ${newVal}`)
+            value = newVal
+          }
+        }
+      })
+    }
+
+    observe(num)
+
+    let n = document.getElementsByClassName('num')[0]
+    let increase = document.getElementsByClassName('increase')[0]
+    let decrease = document.getElementsByClassName('decrease')[0]
+
+    n.innerHTML = num.value + 'rmb'
+    increase.addEventListener('click', function () {
+      num.value ++
+      n.innerHTML = num.value + 'rmb'
+    })
+    decrease.addEventListener('click', function () {
+      num.value --
+      n.innerHTML = num.value + 'rmb'
+    })
+
+
+    Array.prototype.myMap = function (callback, context) {
+      let arr = this
+      let res = []
+      context = context ? context : window
+
+      for (let i = 0; i < arr.length; i++) {
+        let tem = callback.call(context, arr[i], i, arr)
+        res.push(tem)
+      }
+
+      return res
+    }
+  </script>
+</body>
+</html>

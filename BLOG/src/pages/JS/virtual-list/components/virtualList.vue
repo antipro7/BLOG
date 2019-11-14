@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { binarySearch } from '@/utils/util'
+
 export default {
   props: {
     // 所有列表数据
@@ -80,6 +82,7 @@ export default {
   },
   created () {
     this.initPositions()
+    console.log('listData:', this.listData)
   },
   mounted () {
     this.screenHeight = this.$el.clientHeight
@@ -112,28 +115,7 @@ export default {
     // 获取列表起始索引
     getStartIndex (scrollTop = 0) {
       // 二分法查找
-      return this.binarySearch(this.positions, scrollTop)
-    },
-    // 二分法查找
-    binarySearch (list, value) {
-      let start = 0
-      let end = list.length - 1
-      let tempIndex = null
-      while (start <= end) {
-        let midIndex = parseInt((start + end) / 2)
-        let midValue = list[midIndex].bottom
-        if (midValue === value) {
-          return midIndex + 1
-        } else if (midValue < value) {
-          start = midIndex + 1
-        } else if (midValue > value) {
-          if (tempIndex === null || tempIndex > midIndex) {
-            tempIndex = midIndex
-          }
-          end = end - 1
-        }
-      }
-      return tempIndex
+      return binarySearch(this.positions, scrollTop, 'bottom')
     },
     // 获取列表项的当前尺寸
     updateItemsSize () {

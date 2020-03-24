@@ -17,5 +17,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
+li {
+  margin: 10px;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  &:hover {
+    color: #3a796e;
+  }
+}
 </style>

@@ -85,7 +85,6 @@ export default {
     flex: 1;
     height: 100%;
     padding: 50px;
-    overflow: auto;
   }
 
   .abbr {

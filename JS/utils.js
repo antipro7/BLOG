@@ -1,6 +1,6 @@
 // 工具函数
 
-// cookie
+// 操作cookie
 export const cookies = {
   // 设置cookie
   setCookie: (cName, value, expireDays) => {
@@ -29,6 +29,23 @@ export const cookies = {
   }
 }
 
+// getBaseUrl
+export const getBaseUrl = () => {
+  let baseUrlPre = ''
+  switch (window.runtime_env) {
+    case 'development':
+      baseUrlPre = '/...';
+      break;
+    case 'test':
+      baseUrlPre = '';
+      break;
+    // ...
+    default:
+      baseUrlPre = '';
+  }
+  return baseUrlPre;
+}
+
 const utils = {
   // 正则
   REGEXP: {
@@ -43,3 +60,90 @@ const utils = {
 }
 
 export default utils
+
+/**
+ * 判断类型函数
+ * @param {Object} o 需要判断的对象
+ * 使用举例
+ * type({}) object
+ * type([]) array
+ */
+export const type = o => {
+  let s = Object.prototype.toString.call(o);
+  return s.match(/\[object (.*?)\]/)[1].toLowerCase();
+}
+
+/**
+ * 在上面这个type函数的基础上，还可以加上专门判断某种类型数据的方法
+ * 使用举例
+ * type.isObject({}) true
+ * type.isNumber(NaN) true
+ * type.isRegExp(/abc/) true
+ */
+let oArr = ['Null', 'Undefined', 'Object', 'Array', 'String', 'Number', 'Boolean', 'Function', 'RegExp'];
+
+oArr.forEach(t => {
+  type['is' + t] = o => {
+    return type(o) === t.toLocaleLowerCase();
+  };
+});
+
+
+/**
+ * 数组去重
+ */
+// 普通数组
+[...new Set(arr)]
+// 数组包含对象，根据某字段去重
+function deduplication(arr, str) {
+  let hash = {};
+  arr = arr.reduce((item, next) => {
+    if (!hash[next[str]]) {
+      hash[next[str]] = true;
+      item.push(next);
+    }
+    return item;
+  }, [])
+  return arr;
+}
+
+let a = [{
+    id: 1,
+    name: 'a',
+    ss: 'asdas',
+    cc: 'car'
+  }, {
+    id: 2,
+    name: 'b',
+    ss: 'asas',
+    cc: 'carasd'
+  }
+];
+let b = [{
+    id: 1,
+    name: 'a',
+    ss: 'asdas',
+    cc: 'car'
+  }, {
+    id: 3,
+    name: 'bb',
+    ss: '555',
+    cc: '14124'
+  }
+];
+let c = a.concat(b);
+
+// reduce 实现
+function arrRemoveSame (arr, key) {
+  let obj = {};
+  return arr.reduce((cur, next) => {
+    obj[next[ele]] ? '' : obj[next[ele]] = true && cur.push(next);
+  
+    return cur;
+  }, []);
+}
+
+// new Map 实现
+const uniqBy = (arr, key) => {
+  return [... new Map(arr.map(item => [item[key], item])).values()]
+}

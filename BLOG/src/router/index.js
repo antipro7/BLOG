@@ -8,17 +8,17 @@ export default new Router({
     {
       path: '/',
       name: 'CSS',
-      component: () => import('@/components/css')
+      component: () => import('@/pages/css')
     },
     {
       path: '/js',
       name: 'JS',
-      component: () => import('@/components/js')
+      component: () => import('@/pages/js')
     },
     {
       path: '/vue',
       name: 'VUE',
-      component: () => import('@/components/vue')
+      component: () => import('@/pages/vue')
     },
     {
       path: '/js/getBoundingClientRect',
@@ -44,6 +44,11 @@ export default new Router({
       path: '/css/loading',
       name: 'loading',
       component: () => import('@/pages/CSS/loading')
+    },
+    {
+      path: '/css/demo',
+      name: 'css-demo',
+      component: () => import('@/pages/CSS/demo')
     },
     {
       path: '/js/virtualList',

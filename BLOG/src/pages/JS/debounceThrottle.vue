@@ -38,6 +38,26 @@
 </template>
 
 <script>
+/**
+ * 如果写在methods里的防抖/节流 不能正常使用，写在这里试试
+  let timer = null;
+  let sign = true;
+  function debounce (fn, wait = 3000, immediate = true) {
+    return function (...args) {
+      if (timer) clearTimeout(timer)
+
+      if (immediate && sign) {
+        sign = false;
+        fn.apply(this. args);
+      }
+
+      timer = setTimeout(() => {
+        sign = true;
+      }, wait)
+    }
+  }
+ */
+
 export default {
   name: 'debounceThrottle',
   data () {
@@ -47,23 +67,18 @@ export default {
       model: ['没限制', '防抖', '节流']
     }
   },
-  computed: {
-    g () {
-      return this.$refs['gray']
-    }
-  },
   mounted () {
-    this.g.onmousemove = this.count
+    this.$refs['gray'].onmousemove = this.count
   },
   methods: {
     count () {
-      this.g.innerHTML = this.num++
+      this.$refs['gray'].innerHTML = this.num++
     },
     chooseM (e) {
       this.currentIndex = parseInt(e.currentTarget.dataset.index)
       switch (this.currentIndex) {
         case 0:
-          this.g.onmousemove = this.count
+          this.$refs['gray'].onmousemove = this.count
           break
         case 1:
           this.fangdou()
@@ -74,10 +89,10 @@ export default {
       }
     },
     fangdou () {
-      this.g.onmousemove = this.debounce(this.count)
+      this.$refs['gray'].onmousemove = this.debounce(this.count)
     },
     jieliu () {
-      this.g.onmousemove = this.throttle(this.count)
+      this.$refs['gray'].onmousemove = this.throttle(this.count)
     },
     // 立即触发的防抖函数
     debounce (func, wait = 2000, immediate = true) {

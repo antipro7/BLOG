@@ -24,10 +24,12 @@ export default {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 6px 20px -6px rgba(0, 0, 0, .1);
+
   .title {
     font-weight: bold;
     margin-bottom: 15px;
   }
+
   .content {
     // flex: 1 1 auto;
     width: 100%;

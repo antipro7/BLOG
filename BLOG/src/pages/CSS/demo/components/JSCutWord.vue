@@ -1,8 +1,9 @@
 <template>
   <div class="cut-word-box">
+    <button @click="click1">click1</button>
     <div class="part">
       <img src="./s.jpg" alt="">
-      <p class="flow-span">胡惠娟，你看这里好不好看 <span>asdasdasd</span></p>
+      <p class="flow-span">胡惠娟，你看这里好不好看</p>
     </div>
     <div class="part">
 
@@ -12,21 +13,25 @@
 
 <script>
 export default {
-  mounted () {
-    // let p = document.querySelectorAll('.flow-span');
-    // p.forEach(item => {
-    //   let letters = item.textContent.split('');
+  methods: {
+    click1 () {
+      let p = document.querySelectorAll('.flow-span');
 
-    //   item.textContent = '';
-    //   letters.forEach((letter, i) => {
-    //     let span = document.createElement('span');
+      p.forEach(item => {
+        let letters = item.textContent.split('');
+        item.textContent = '';
 
-    //     span.textContent = letter;
-    //     span.style.animationDelay = `${i * 0.5}s`;
-    //     // span.style.animation = `flow .8s ease-out both`;
-    //     item.append(span)
-    //   })
-    // })
+        letters.forEach((letter, i) => {
+          let span = document.createElement('span');
+          this.$nextTick(() => {
+            span.textContent = letter;
+            span.style.animationDelay = `${i * 0.5}s`;
+            span.setAttribute('class', 'flow');
+            item.append(span);
+          })
+        })
+      })
+    }
   }
 }
 </script>
@@ -43,17 +48,18 @@ export default {
   }
   .part {
     position: relative;
-    p {
+    .flow-span {
       font-size: 20px;
       font-weight: 600;
       position: absolute;
       z-index: 2;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
-      span {
-        animation: flow 2s ease-out both;
-      }
+      // transform: translate(-50%, -50%);
+    }
+    .flow {
+      color: red;
+      animation: flow 2s ease-out forwards;
     }
     &::after {
       content: '';
@@ -65,16 +71,16 @@ export default {
       background-color: rgba(16, 16, 16, .8);
     }
   }
+}
 
-  @keyframes flow {
-    0% {
-      opacity: 0;
-      transform: translateY(-20%);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+@keyframes flow {
+  0% {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 </style>

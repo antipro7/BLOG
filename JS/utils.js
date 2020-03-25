@@ -147,3 +147,26 @@ function arrRemoveSame (arr, key) {
 const uniqBy = (arr, key) => {
   return [... new Map(arr.map(item => [item[key], item])).values()]
 }
+
+/**
+ * 数组对象重名名
+ */
+let arr = [
+  { id: 1, value: 'one', name: 'haha' },
+  { id: 2, value: 'two', name: 'fang' },
+  { id: 3, value: 'three', name: 'hui' },
+  { id: 4, value: 'foue', name: 'tom' },
+]
+
+// map方法
+let newarr = arr.map(item => {
+  item['newname'] = item['name'];
+  delete item['name']
+  return item
+})
+
+// Object.defineProperty
+arr.forEach(item => {
+  Object.defineProperty(item, 'newname', Object.getOwnPropertyDescriptor(item, 'name'));
+  delete item['name'];
+})

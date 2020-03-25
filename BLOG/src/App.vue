@@ -83,8 +83,9 @@ export default {
   }
   .content {
     flex: 1;
-    height: 100%;
     padding: 50px;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   .abbr {

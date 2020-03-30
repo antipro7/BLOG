@@ -5,6 +5,7 @@
       <ol>
         <li @click="$go('vue/vuexShoppingCart')">Vuex购物车实例</li>
         <li @click="$go('vue/mvvm')">浅析MVC | MVP | MVVM 模式</li>
+        <li @click="$go('vue/tinymce')">富文本</li>
       </ol>
     </section>
   </div>

@@ -59,6 +59,11 @@ export default new Router({
       path: '/vue/mvvm',
       name: 'mvvm',
       component: () => import('@/pages/VUE/MVVM/index')
+    },
+    {
+      path: '/vue/tinymce',
+      name: 'tinymce',
+      component: () => import('@/pages/VUE/Tinymce/index')
     }
   ]
 })

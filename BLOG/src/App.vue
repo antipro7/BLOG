@@ -82,6 +82,7 @@ export default {
     }
   }
   .content {
+    position: relative;
     flex: 1;
     padding: 50px;
     overflow-x: hidden;

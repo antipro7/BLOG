@@ -69,9 +69,9 @@ const oneWeekDiff = (time, condition, type) => {
   let t;
 
   if (condition === 'prev') {
-    t = format(new Date(timesStamp - oneDayTime), type);
+    t = format(new Date(timesStamp - oneDayTime * 7), type);
   } else if (condition === 'next') {
-    t = format(new Date(timesStamp + timesStamp), type)
+    t = format(new Date(timesStamp + oneDayTime * 7), type)
   }
 
   return t;

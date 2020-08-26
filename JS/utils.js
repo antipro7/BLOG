@@ -95,6 +95,10 @@ oArr.forEach(t => {
 // 普通数组
 [...new Set(arr)]
 // 数组包含对象，根据某字段去重
+let a = [{ id: 1, name: 'a', ss: 'asdas', cc: 'car' }, { id: 2, name: 'b', ss: 'asas', cc: 'carasd' }];
+let b = [{ id: 1, name: 'a', ss: 'asdas', cc: 'car' }, { id: 3, name: 'bb', ss: '555', cc: '14124' }];
+let c = a.concat(b);
+
 function deduplication(arr, str) {
   let hash = {};
   arr = arr.reduce((item, next) => {
@@ -107,37 +111,11 @@ function deduplication(arr, str) {
   return arr;
 }
 
-let a = [{
-    id: 1,
-    name: 'a',
-    ss: 'asdas',
-    cc: 'car'
-  }, {
-    id: 2,
-    name: 'b',
-    ss: 'asas',
-    cc: 'carasd'
-  }
-];
-let b = [{
-    id: 1,
-    name: 'a',
-    ss: 'asdas',
-    cc: 'car'
-  }, {
-    id: 3,
-    name: 'bb',
-    ss: '555',
-    cc: '14124'
-  }
-];
-let c = a.concat(b);
-
 // reduce 实现
 function arrRemoveSame (arr, key) {
   let obj = {};
   return arr.reduce((cur, next) => {
-    obj[next[ele]] ? '' : obj[next[ele]] = true && cur.push(next);
+    obj[next[key]] ? '' : obj[next[key]] = true && cur.push(next);
   
     return cur;
   }, []);
@@ -147,9 +125,11 @@ function arrRemoveSame (arr, key) {
 const uniqBy = (arr, key) => {
   return [... new Map(arr.map(item => [item[key], item])).values()]
 }
-
+console.log('deduplication', deduplication(c, id));
+console.log('arrRemoveSame', arrRemoveSame(c, id));
+console.log('uniqBy', uniqBy(c, id));
 /**
- * 数组对象重名名
+ * 数组对象重命名
  */
 let arr = [
   { id: 1, value: 'one', name: 'haha' },
